@@ -207,7 +207,17 @@ set DB_USER=<your-mysql-username>
 set DB_PASSWORD=<your-mysql-password>
 set PRODUCTSERVICE_DB_NAME=productservice_db
 ```
+#### 6.2 Run test
 
+```bash
+cd productservice/src
+./mvnw test
+```
+This command will:
+- Create database tables
+- Insert few roles into role table
+- Setup initial security configurations
+ 
 #### 6.2 Start Product Service
 
 ```bash
