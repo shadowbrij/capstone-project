@@ -1,4 +1,11 @@
-# Project setup instructions
+# Github link of all the code repos are below
+1. **[Service Discovery (Eureka Server)](https://github.com/shadowbrij/servicediscovery.git)** 
+2. **[API Gateway](https://github.com/shadowbrij/apigateway.git)** 
+3. **[User Service](https://github.com/shadowbrij/userService.git)**
+4. **[Product Service](https://github.com/shadowbrij/productservice.git)** 
+5. **[Payment Service](https://github.com/shadowbrij/paymentservice.git)** 
+
+## Project setup instructions
 
 ## Overview
 
