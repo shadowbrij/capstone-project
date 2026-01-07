@@ -26,7 +26,6 @@ Before you begin, ensure you have the following installed on your machine:
 Verify installations:
 ```bash
 java -version
-mvn -version
 mysql --version
 git --version
 ```
@@ -79,7 +78,7 @@ cd apigateway/src
 ```
 
 **Expected Output:**
-- API Gateway should start on its configured port (typically 8080)
+- API Gateway should start on its configured port (9093 in this case)
 - Service should register with Eureka automatically
 - Gateway will be available for routing requests to other services
 
@@ -91,23 +90,16 @@ The User Service handles authentication, user management, and role-based access 
 
 #### 4.1 Setup Environment Variables
 
-Create a `.env` file or set the following environment variables in your terminal:
+Set the following environment variables in your terminal:
 
 ```bash
 # Database Configuration
 export DB_USER=<your-mysql-username>
 export DB_PASSWORD=<your-mysql-password>
-export USERSERVICE_DB_NAME=userservice_db
+export USERSERVICE_DB_NAME=userservice
 
 # Create the database if it doesn't exist
 mysql -u $DB_USER -p$DB_PASSWORD -e "CREATE DATABASE IF NOT EXISTS $USERSERVICE_DB_NAME;"
-```
-
-Or on Windows (Command Prompt):
-```cmd
-set DB_USER=<your-mysql-username>
-set DB_PASSWORD=<your-mysql-password>
-set USERSERVICE_DB_NAME=userservice_db
 ```
 
 #### 4.2 Insert Client Details
@@ -145,27 +137,19 @@ The Payment Service handles all payment processing through multiple payment gate
 
 #### 5.1 Setup Environment Variables
 
-Create a `.env` file or set the following environment variables:
+Set the following environment variables:
 
 ```bash
 # Database Configuration
 export DB_USER=<your-mysql-username>
 export DB_PASSWORD=<your-mysql-password>
-export PAYMENTSERVICE_DB_NAME=paymentservice_db
+export PAYMENTSERVICE_DB_NAME=paymentservice
 
 # Payment Gateway Configuration
 export STRIPE_KEY_SECRET=<your-stripe-secret-key>
 
 # Create the database if it doesn't exist
 mysql -u $DB_USER -p$DB_PASSWORD -e "CREATE DATABASE IF NOT EXISTS $PAYMENTSERVICE_DB_NAME;"
-```
-
-Or on Windows (Command Prompt):
-```cmd
-set DB_USER=<your-mysql-username>
-set DB_PASSWORD=<your-mysql-password>
-set PAYMENTSERVICE_DB_NAME=paymentservice_db
-set STRIPE_KEY_SECRET=<your-stripe-secret-key>
 ```
 
 #### 5.2 Start Payment Service
@@ -179,7 +163,6 @@ cd paymentservice/src
 - Payment Service should start on port 9092
 - Service registers with Eureka
 - Payment gateways are initialized
-- Database tables are created/updated
 
 ---
 
@@ -195,18 +178,12 @@ Create a `.env` file or set the following environment variables:
 # Database Configuration
 export DB_USER=<your-mysql-username>
 export DB_PASSWORD=<your-mysql-password>
-export PRODUCTSERVICE_DB_NAME=productservice_db
+export PRODUCTSERVICE_DB_NAME=productservice
 
 # Create the database if it doesn't exist
 mysql -u $DB_USER -p$DB_PASSWORD -e "CREATE DATABASE IF NOT EXISTS $PRODUCTSERVICE_DB_NAME;"
 ```
 
-Or on Windows (Command Prompt):
-```cmd
-set DB_USER=<your-mysql-username>
-set DB_PASSWORD=<your-mysql-password>
-set PRODUCTSERVICE_DB_NAME=productservice_db
-```
 #### 6.2 Run test
 
 ```bash
@@ -254,14 +231,14 @@ Verification
 ```properties
 DB_USER=your_mysql_username
 DB_PASSWORD=your_mysql_password
-USERSERVICE_DB_NAME=userservice_db
+USERSERVICE_DB_NAME=userservice
 ```
 
 ### Payment Service
 ```properties
 DB_USER=your_mysql_username
 DB_PASSWORD=your_mysql_password
-PAYMENTSERVICE_DB_NAME=paymentservice_db
+PAYMENTSERVICE_DB_NAME=paymentservice
 STRIPE_KEY_SECRET=your_stripe_secret_key
 ```
 
@@ -269,7 +246,7 @@ STRIPE_KEY_SECRET=your_stripe_secret_key
 ```properties
 DB_USER=your_mysql_username
 DB_PASSWORD=your_mysql_password
-PRODUCTSERVICE_DB_NAME=productservice_db
+PRODUCTSERVICE_DB_NAME=productservice
 ```
 
 ---
@@ -310,9 +287,9 @@ server.port=<new-port-number>
 
 | Service | Base URL | Key Endpoints |
 |---------|----------|---------------|
-| API Gateway | http://localhost:8080 | Route to all services |
-| User Service | http://localhost:9090 | /users, /auth, /roles |
-| Product Service | http://localhost:9091 | /products, /categories, /search |
+| API Gateway | http://localhost:9093 | Route to all services |
+| User Service | http://localhost:9091 | /users, /auth, /roles |
+| Product Service | http://localhost:9090 | /products, /categories, /search |
 | Payment Service | http://localhost:9092 | /payments |
 | Service Discovery | http://localhost:8761 | /eureka |
 
